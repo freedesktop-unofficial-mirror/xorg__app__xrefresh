@@ -21,8 +21,8 @@
 
 bin_PROGRAMS = xrefresh
 
-xrefresh_CFLAGS = $(DEP_CFLAGS)
-xrefresh_LDADD = $(DEP_LIBS)
+xrefresh_CFLAGS = $(XREFRESH_CFLAGS)
+xrefresh_LDADD = $(XREFRESH_LIBS)
 
 xrefresh_SOURCES =	\
         xrefresh.c
