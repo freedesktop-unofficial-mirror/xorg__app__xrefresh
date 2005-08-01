@@ -27,6 +27,6 @@ xrefresh_LDADD = $(XREFRESH_LIBS)
 xrefresh_SOURCES =	\
         xrefresh.c
 
-dist_man_MANS = \
+dist_man1_MANS = \
         xrefresh.man
 
