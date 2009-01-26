@@ -62,9 +62,9 @@ SOFTWARE.
 #include <ctype.h>
 #include <stdlib.h>
 
-Window win;
+static Window win;
 
-char *ProgramName;
+static char *ProgramName;
 
 static void 
 Syntax(void)
@@ -142,7 +142,7 @@ isabbreviation(char *arg, char *s, int minslen)
 
 enum e_action {doDefault, doBlack, doWhite, doSolid, doNone, doRoot};
 
-struct s_pair {
+static struct s_pair {
 	char *resource_name;
 	enum e_action action;
 } pair_table[] = {
