@@ -78,7 +78,7 @@ refresh; see \fIX(__miscmansuffix__)\fP.
 The
 .I xrefresh
 program uses the routine 
-.I XGetDefault(3X)
+.I XGetDefault(__libmansuffix__)
 to read defaults, so its resource names are all capitalized.
 .PP
 .TP 8
