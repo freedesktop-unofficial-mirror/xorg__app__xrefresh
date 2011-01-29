@@ -342,7 +342,7 @@ main(int argc, char *argv[])
      * backing store;  or do a ClearArea generating exposures on all windows
      */
     XMapWindow (dpy, win);
-    /* the following will free the color that we might have allocateded */
+    /* the following will free the color that we might have allocated */
     XCloseDisplay (dpy);
     exit (0);
 }
