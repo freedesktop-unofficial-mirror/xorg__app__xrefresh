@@ -316,7 +316,8 @@ main(int argc, char *argv[])
 	    } else {
 		fprintf (stderr,"%s:  unable to allocate color '%s'.\n",
 			 ProgramName, solidcolor);
-		action = doNone;
+		xswa.background_pixmap = None;
+		mask |= CWBackPixmap;
 	    }
 	    break;
 	case doDefault:
