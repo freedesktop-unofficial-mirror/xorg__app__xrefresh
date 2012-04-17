@@ -62,7 +62,7 @@ static Window win;
 
 static char *ProgramName;
 
-static void 
+static void _X_NORETURN
 Syntax(void)
 {
     fprintf (stderr, "usage:  %s [-options] [geometry] [display]\n\n", 
