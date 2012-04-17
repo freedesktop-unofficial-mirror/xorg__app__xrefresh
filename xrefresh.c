@@ -88,7 +88,7 @@ static int
 parse_boolean_option(char *option)
 {
     static struct _booltable {
-        char *name;
+        const char *name;
         int value;
     } booltable[] = {
         { "off", 0 }, { "n", 0 }, { "no", 0 }, { "false", 0 },
@@ -114,7 +114,7 @@ parse_boolean_option(char *option)
  */
 
 static Bool 
-isabbreviation(char *arg, char *s, int minslen)
+isabbreviation(const char *arg, char *s, int minslen)
 {
     int arglen;
     int slen;
@@ -139,7 +139,7 @@ isabbreviation(char *arg, char *s, int minslen)
 enum e_action {doDefault, doBlack, doWhite, doSolid, doNone, doRoot};
 
 static struct s_pair {
-	char *resource_name;
+	const char *resource_name;
 	enum e_action action;
 } pair_table[] = {
 	{ "Black", doBlack },
