@@ -87,14 +87,14 @@ Syntax(void)
 static int 
 parse_boolean_option(char *option)
 {
-    static struct _booltable {
+    static const struct _booltable {
         const char *name;
         int value;
     } booltable[] = {
         { "off", 0 }, { "n", 0 }, { "no", 0 }, { "false", 0 },
         { "on", 1 }, { "y", 1 }, { "yes", 1 }, { "true", 1 },
         { NULL, -1 }};
-    register struct _booltable *t;
+    register const struct _booltable *t;
     register char *cp;
 
     for (cp = option; *cp; cp++) {
@@ -138,7 +138,7 @@ isabbreviation(const char *arg, char *s, int minslen)
 
 enum e_action {doDefault, doBlack, doWhite, doSolid, doNone, doRoot};
 
-static struct s_pair {
+static const struct s_pair {
 	const char *resource_name;
 	enum e_action action;
 } pair_table[] = {
@@ -225,7 +225,7 @@ main(int argc, char *argv[])
 	    }
 	    action = doSolid;
 	} else {
-	    struct s_pair *pp;
+	    const struct s_pair *pp;
 
 	    for (pp = pair_table; pp->resource_name != NULL; pp++) {
 		def = XGetDefault (dpy, ProgramName, pp->resource_name);
