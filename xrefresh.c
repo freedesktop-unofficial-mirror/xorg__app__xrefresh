@@ -65,16 +65,16 @@ static char *ProgramName;
 static void _X_NORETURN
 Syntax(void)
 {
-    fprintf (stderr, "usage:  %s [-options] [geometry] [display]\n\n", 
-    	     ProgramName);
-    fprintf (stderr, "where the available options are:\n");
-    fprintf (stderr, "    -display host:dpy       or -d\n");
-    fprintf (stderr, "    -geometry WxH+X+Y       or -g spec\n");
-    fprintf (stderr, "    -black                  use BlackPixel\n");
-    fprintf (stderr, "    -white                  use WhitePixel\n");
-    fprintf (stderr, "    -solid colorname        use the color indicated\n");
-    fprintf (stderr, "    -root                   use the root background\n");
-    fprintf (stderr, "    -none                   no background in window\n");
+    fprintf (stderr, "usage:  %s [-options] [geometry] [display]\n\n%s",
+	     ProgramName,
+	     "where the available options are:\n"
+	     "    -display host:dpy       or -d\n"
+	     "    -geometry WxH+X+Y       or -g spec\n"
+	     "    -black                  use BlackPixel\n"
+	     "    -white                  use WhitePixel\n"
+	     "    -solid colorname        use the color indicated\n"
+	     "    -root                   use the root background\n"
+	     "    -none                   no background in window\n");
     fprintf (stderr, "\nThe default is:  %s -none\n\n", ProgramName);
     exit (1);
 }
