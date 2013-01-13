@@ -114,10 +114,10 @@ parse_boolean_option(char *option)
  */
 
 static Bool 
-isabbreviation(const char *arg, char *s, int minslen)
+isabbreviation(const char *arg, char *s, size_t minslen)
 {
-    int arglen;
-    int slen;
+    size_t arglen;
+    size_t slen;
 
     /* exact match */
     if (strcmp (arg, s) == 0) return (True);
