@@ -50,13 +50,20 @@ SOFTWARE.
  * screen.
  */
 
+#ifdef HAVE_CONFIG_H
+# include "config.h"
+#endif
+
 #include <stdio.h>
 #include <errno.h>
 #include <X11/Xos.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-#include <ctype.h>
 #include <stdlib.h>
+
+#ifndef HAVE_STRCASECMP
+# include <ctype.h>
+#endif
 
 static Window win;
 
@@ -95,14 +102,21 @@ parse_boolean_option(char *option)
         { "on", 1 }, { "y", 1 }, { "yes", 1 }, { "true", 1 },
         { NULL, -1 }};
     register const struct _booltable *t;
+
+#ifndef HAVE_STRCASECMP
     register char *cp;
 
     for (cp = option; *cp; cp++) {
         if (isascii (*cp) && isupper (*cp)) *cp = tolower (*cp);
     }
+#endif
 
     for (t = booltable; t->name; t++) {
+#ifdef HAVE_STRCASECMP
+        if (strcasecmp (option, t->name) == 0) return (t->value);
+#else
         if (strcmp (option, t->name) == 0) return (t->value);
+#endif
     }
     return (-1);
 }
