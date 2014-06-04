@@ -69,7 +69,7 @@ static Window win;
 
 static char *ProgramName;
 
-static void _X_NORETURN
+static void _X_NORETURN _X_COLD
 Syntax(void)
 {
     fprintf (stderr, "usage:  %s [-options] [geometry] [display]\n\n%s",
@@ -84,6 +84,20 @@ Syntax(void)
 	     "    -none                   no background in window\n");
     fprintf (stderr, "\nThe default is:  %s -none\n\n", ProgramName);
     exit (1);
+}
+
+static void _X_NORETURN _X_COLD
+missing_arg(const char *arg)
+{
+    fprintf (stderr, "%s: %s requires an argument\n\n", ProgramName, arg);
+    Syntax ();
+}
+
+static void _X_NORETURN _X_COLD
+unknown_arg(const char *arg)
+{
+    fprintf (stderr, "%s: unrecognized argument %s\n\n", ProgramName, arg);
+    Syntax ();
 }
 
 /*
@@ -188,11 +202,11 @@ main(int argc, char *argv[])
 
 	if (arg[0] == '-') {
 	    if (isabbreviation ("-display", arg, 2)) {
-		if (++i >= argc) Syntax ();
+		if (++i >= argc) missing_arg (arg);
 		displayname = argv[i];
 		continue;
 	    } else if (isabbreviation ("-geometry", arg, 2)) {
-		if (++i >= argc) Syntax ();
+		if (++i >= argc) missing_arg (arg);
 		geom = argv[i];
 		continue;
 	    } else if (isabbreviation ("-black", arg, 2)) {
@@ -202,7 +216,7 @@ main(int argc, char *argv[])
 		action = doWhite;
 		continue;
 	    } else if (isabbreviation ("-solid", arg, 2)) {
-		if (++i >= argc) Syntax ();
+		if (++i >= argc) missing_arg (arg);
 		solidcolor = argv[i];
 		action = doSolid;
 		continue;
@@ -213,11 +227,11 @@ main(int argc, char *argv[])
 		action = doRoot;
 		continue;
 	    } else 
-		Syntax ();
+		unknown_arg (arg);
 	} else if (arg[0] == '=')			/* obsolete */
 	    geom = arg;
 	else 
-	    Syntax ();
+	    unknown_arg (arg);
     }
 
     if ((dpy = XOpenDisplay(displayname)) == NULL) {
