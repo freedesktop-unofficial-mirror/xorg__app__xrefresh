@@ -81,7 +81,9 @@ Syntax(void)
 	     "    -white                  use WhitePixel\n"
 	     "    -solid colorname        use the color indicated\n"
 	     "    -root                   use the root background\n"
-	     "    -none                   no background in window\n");
+	     "    -none                   no background in window\n"
+	     "    -version                print program version\n"
+	);
     fprintf (stderr, "\nThe default is:  %s -none\n\n", ProgramName);
     exit (1);
 }
@@ -226,6 +228,9 @@ main(int argc, char *argv[])
 	    } else if (isabbreviation ("-root", arg, 2)) {
 		action = doRoot;
 		continue;
+	    } else if (isabbreviation ("-version", arg, 1)) {
+		puts(PACKAGE_STRING);
+		exit(0);
 	    } else 
 		unknown_arg (arg);
 	} else if (arg[0] == '=')			/* obsolete */
